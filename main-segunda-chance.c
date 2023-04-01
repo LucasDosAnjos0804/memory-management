@@ -5,6 +5,7 @@
 
 #include "utils.h"
 #include "fifo.h"
+#include "memory.h"
 
 int
 main ()
@@ -17,7 +18,7 @@ main ()
     {
         system("clear");
 
-        puts("FIFO ALGORITHM\n");
+        puts("SECOND CHANCE ALGORITHM\n");
 
         addin_fifo( f, create_pagina( rand()%sizeof(int), rand()%sizeof(int) ) );
 
@@ -27,6 +28,6 @@ main ()
 
         sleep(1);
     }
-
+    
     return 0;
 }

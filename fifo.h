@@ -4,49 +4,39 @@
     de mapeamento de memoria
 */
 
-#include "paginas.h"
 
-typedef struct Fifo
-{
-    int tam;
-    int tam_atual;
-    Pagina* start;
-    Pagina* end;
-}Fifo;
+#define FIFO_SIZE 20
 
-Fifo* create_fifo(int tam);
-Pagina* drop_fifo(Fifo* f);
-void addin_fifo( Fifo* f, Pagina* p);
-void print_fifo( Fifo* f);
+typedef Fila Fifo;
+
+Fifo* fifo_create();
+Pagina* fifo_drop(Fifo* f);
+void fifo_add( Fifo* f, Pagina* p);
+void fifo_print( Fifo* f);
 
 /// @brief Cria um Fifo
 /// @param tam tamanho do FIFO
 Fifo*
-create_fifo(int tam)
+fifo_create()
 {
     Fifo* f = (Fifo*) malloc (sizeof(Fifo));
-    f->tam = tam;
-    f->tam_atual = 0;
-    f->start = NULL;
-    f->end = NULL;
+    if (f)
+    {
+        f->tam_atual = 0;
+        f->start = NULL;
+        f->end = NULL;
+    }
+    return f;
 }
 
 
 /// @brief Retira a pagina mais antiga (o primeiro elemento) do fifo
 /// @param f Endereco de memoria de FIFO
 Pagina*
-drop_fifo(Fifo* f)
+fifo_drop(Fifo* f)
 {
-    Pagina* remover = f->start;
+    Pagina* remover = fila_drop(f)->data;
 
-    if ( remover )
-    {
-        f->start = remover->prox;
-        f->tam_atual--;
-
-        f->start->ant = NULL; 
-        remover->prox = NULL; 
-    }
     return remover;
 }
 
@@ -56,45 +46,25 @@ drop_fifo(Fifo* f)
 /// @param f Endereco de memoria de FIFO
 /// @param p Pagina que sera adicionada ao FIFO 
 void
-addin_fifo( Fifo* f, Pagina* p)
-{ 
-    if ( f->tam_atual >= f->tam )
+fifo_add( Fifo* f, Pagina* p)
+{
+    // falta a condição de memoria cheia
+    if (f->tam_atual >= FIFO_SIZE)
     {
-        drop_fifo(f);
-    } 
-    
-    if ( f->tam_atual )
-    {
-        f->end->prox = p;
-        p->ant = f->end;
-        f->end = p;
-    } 
-    else
-    {
-        f->start = p;
-        f->end = p;
+        fila_drop(f);
     }
-
-    f->tam_atual++;
-    logs("Pagina adicionada ao FIFO");
+    fila_add (f,p);
+    
+    logs(l,"Pagina adicionada ao FIFO",'e');
 }
 
 
 /// @brief Exibe cada elemento de FIFO
 /// @param f Endereco de memoria de FIFO
 void
-print_fifo( Fifo* f)
+fifo_print( Fifo* f)
 {
-    Pagina* p = f->start;
     printf("FIFO : ");
-    while (p)
-    {
-        printf("%p",p);
-
-        if ( p->prox )
-            printf(" <-> ");
-        
-        p = p->prox;
-    }
+    fila_print(f);
     puts("");
 }

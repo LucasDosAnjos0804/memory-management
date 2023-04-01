@@ -1,5 +1,48 @@
+//              testes
+/* FEITO
+    fazer o usuário criar jobs;  
+
+*/
+
+/* FAZER
+    corrigir vmemory_addin
+    corrigir pagetable_map
+    implementando o memory manager
+
+*/
+
+//              implementations
+
+/*  FEITO
+    joblist to scheduler
+    mandar o Job para o escalonador
+    corrigir erros de sempre espera
+    corrigir erros de sempre sinaliza
+    criar thread da CPU
+        Fazer a cpu consumir o JOB com base no scheduler
+        Fazera cpu requisitar acesso a memoria
+        fazer a cpu emitir um free memory para o memory manager
+    free memory task
+    fazer os logs ficarem mais visualizaveis dividindo-os em categorías de logs
+        para cada estrutura e para cada thread:)
+
+*/
+
+/*  FAZENDO 
+    criar a thread do swapper
+    implementar o algoritmo de swap no SWAPPER
+    fazer o swapper pegar os jobs e alocar na memoria
+*/
+
+/*  FAZER
+    ...
+    ...
+*/
+
+
+
 /*
-    melhoria 
+    melhoria no cenário
 
         um usuario que cria demanda para cpu, quando um usuário cria um processo, este precisa ser armazenado na
         MEMORIA, encontrar um espaço disponivel (armazenar esse espaço inicio e tamanho), então cobre com ums 
@@ -20,4 +63,15 @@
 
         a cpu (consumer), usuario (producer, para o escalonador [fila de chamadas]) e escalonador de processos (consumer para o usuario,
         mas é producer para a CPU), podem ser threads
-*/ 
+*/
+
+/*
+    melhoria em paginas.h
+        paginas referencia endereco de inicio e de fim, tambem pode referencias um Job
+        nesse caso fifo seria de fato uma lista duplamente encadeada que refenciaria Nos
+        que referenciariam paginas;
+
+        nesse caso um __usuario criaria um Job, ENTAO, o __swaper encontra um espaço disponivel para esse Job na memoria
+        com auxilio do enderacento virtual. (errado)
+
+*/

@@ -1,40 +1,39 @@
 /*
-    Objeto abstracao de uma pagina de memoria
+    Objeto abstracao de uma pagina de memoria virtual
 */
+
+#define PAGE_SIZE 4
 
 typedef struct Pagina
 {
-
     /*
         algumas caracteristicas sobre paginas
     */
 
-    unsigned int endereco_inicio; 
-    unsigned int endereco_fim;
+    int endereco_virtual;
+    int endereco_fisico;
+    int bit_r;                      // bit_r da pagina 1 se ela foi referenciada recentemente 0 se não
     int tam;
-    int tam_atual;
 
-    struct Pagina* prox; // proxima pagina no encadeamento
-    struct Pagina* ant;  // pagina anterior no encadeamento
+    struct Pagina* prox;            // proxima pagina no encadeamento
+    struct Pagina* ant;             // pagina anterior no encadeamento
 
 }Pagina;
 
-Pagina* create_pagina(int endereco, int tam);
+Pagina* pagina_create ( int endereco_v, int endereco_f );
 
 
-/// @brief Cria uma pagina com um endereco de inicio, endereco de fim, e tamanho;
-/// @param endereco endereco de inicio do bloco
-/// @param tam tamanho do bloco
+/// @brief Cria uma pagina
 Pagina*
-create_pagina(int endereco, int tam)
+pagina_create( int endereco_v, int endereco_f )
 {
     Pagina* p = (Pagina*) malloc (sizeof(Pagina));
-    p->endereco_inicio = endereco;
-    p->tam = tam;
-    p->endereco_fim = p->endereco_inicio+p->tam;
+    p->endereco_virtual = endereco_v;
+    p->endereco_fisico = endereco_f;
+    p->tam = PAGE_SIZE;
 
     p->prox = p->ant = NULL;
     
-    logs("Pagina criada");
+    //logs(l,"Pagina criada",'e');
     return p;
 }
