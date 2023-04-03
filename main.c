@@ -7,9 +7,9 @@
 #include "utils.h"
 
 #include "memory.h"
-#include "paginas.h"
-#include "fifo.h"
-#include "virtual-memory.h"
+// #include "fifo/virtual-memory.h"
+#include "segunda-chance/virtual-memory.h"
+
 #include "bitmap.h"
 #include "page-table.h"
 
@@ -200,7 +200,7 @@ main ()
     add_log_cat(l,'c');
     
     logs_off(l,'e');
-    logs_off(l,'u');
+    // logs_off(l,'u');
     // logs_off(l,'m');
     // logs_off(l,'s');
     // logs_off(l,'c');

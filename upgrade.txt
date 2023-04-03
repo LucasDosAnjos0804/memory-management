@@ -1,19 +1,9 @@
 //              testes
 /* FEITO
     fazer o usuário criar jobs;  
-
-*/
-
-/* FAZER
     corrigir vmemory_addin
     corrigir pagetable_map
     implementando o memory manager
-
-*/
-
-//              implementations
-
-/*  FEITO
     joblist to scheduler
     mandar o Job para o escalonador
     corrigir erros de sempre espera
@@ -25,16 +15,28 @@
     free memory task
     fazer os logs ficarem mais visualizaveis dividindo-os em categorías de logs
         para cada estrutura e para cada thread:)
-
-*/
-
-/*  FAZENDO 
     criar a thread do swapper
     implementar o algoritmo de swap no SWAPPER
     fazer o swapper pegar os jobs e alocar na memoria
+
+*/
+
+/* FAZER
+
+*/
+
+//              implementations
+
+/*  FEITO
+    
+*/
+
+/*  FAZENDO 
+
 */
 
 /*  FAZER
+
     ...
     ...
 */
@@ -42,7 +44,7 @@
 
 
 /*
-    melhoria no cenário
+    cenário
 
         um usuario que cria demanda para cpu, quando um usuário cria um processo, este precisa ser armazenado na
         MEMORIA, encontrar um espaço disponivel (armazenar esse espaço inicio e tamanho), então cobre com ums 

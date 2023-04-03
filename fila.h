@@ -19,6 +19,7 @@ void fila_add ( Fila *f, void* data );
 void fila_print ( Fila* f );
 Fila* fila_create ();
 No* fila_find ( Fila* f, void* data );
+No* fila_remove ( Fila* f, No* data );
 
 Fila*
 fila_create ()
@@ -53,6 +54,32 @@ fila_drop ( Fila* f )
         remover->prox = NULL;
     }
     return remover;
+}
+
+No*
+fila_remove ( Fila* f, No* no_remover )
+{
+    if (no_remover == NULL)
+        return NULL;
+    
+    if (no_remover == f->start)
+        return fila_drop(f);
+
+    No* anterior = no_remover->ant;
+    No* proximo = no_remover->prox;
+
+    if (anterior)
+        anterior->prox = proximo;
+
+    if (proximo)
+        proximo->ant = anterior;
+
+    f->tam_atual--;
+
+    no_remover->prox = NULL;
+    no_remover->ant = NULL;
+    
+    return no_remover;
 }
 
 void

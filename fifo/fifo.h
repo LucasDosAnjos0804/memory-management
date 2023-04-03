@@ -1,9 +1,7 @@
-
 /*
     Objeto abstracao da estrutura de dados usada no algoritmo fifo
     de mapeamento de memoria
 */
-
 
 #define FIFO_SIZE 20
 

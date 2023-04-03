@@ -35,8 +35,7 @@ td_swapper ()
         for (int i = 0; i < PAGE_SIZE; i++)
         {
             pthread_mutex_lock( &mutex_memory );
-            // ta errado
-            // ele deve primeiro descobrir qual endereço de memoria fisica está livre
+            //
             memory_write( memory,linha_page_table->endereco_mfisica+i, 1);
             pthread_mutex_unlock( &mutex_memory );
         }
@@ -48,5 +47,7 @@ td_swapper ()
         if ( page_fault_swapper_to_mm->tam_atual <= 1 )
             pthread_cond_signal( &cond_page_fault_swapper_to_mm );
         pthread_mutex_unlock( &mutex_page_fault_swapper_to_mm );
+
+        vm_print(vmemory);
     }
 }

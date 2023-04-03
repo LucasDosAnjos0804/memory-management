@@ -1,8 +1,10 @@
 /*
     abstração do que é uma memoria virtual mantida pelo gerenciador de memoria
 */
-#define VMEMORY_SIZE 20
+#include "paginas.h"
+#include "fifo.h"
 
+#define VMEMORY_SIZE 20
 typedef Fifo Vmemory;
 
 Pagina* vm_drop ( Vmemory* f );

@@ -156,12 +156,13 @@ td_memory_manager()
             {
                 err("não foi possível alocar um endereço virtual out of vmemory");
                 pthread_cond_wait( &cond_bitmap, &mutex_bitmap );
-                endereco_virtual = bitmap_find( bitmap ); 
+                endereco_virtual = bitmap_find( bitmap );
             }
             pthread_mutex_unlock( &mutex_bitmap );
             
             pagetable_map( pagetable,endereco_virtual,job->endereco+i );     // mapeia o endereco virtual pra o endereco fisico do processo 
             
+            bitmap_print( bitmap );
         }
         
         //pthread_mutex_lock( &job->mutex );
